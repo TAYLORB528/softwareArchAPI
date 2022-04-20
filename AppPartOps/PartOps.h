@@ -2,6 +2,8 @@
 #include "AppPartOpsExports.h"
 #include <string>
 #include "..\Core\GuidObject.h"
+#include "../AutomationBinding/AutomationAPI_Part.h"
+#include "../AutomationBinding/PartBuilder.h"
 
 
 namespace Application
@@ -21,6 +23,7 @@ namespace Application
 	};
 }
 
+extern APPPARTOPS_API AutomationAPI::PartBuilder* Journaling_CreatePart(AutomationAPI::Part* part);
 
 
 

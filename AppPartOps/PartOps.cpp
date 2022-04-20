@@ -42,6 +42,26 @@ void Application::PartFile::SavePart()
 	CoreSession::GetInstance().CreateMessage(Observer::SavePart, (void*)ptr);
 }
 
+AutomationAPI::PartBuilder* Journaling_CreatePart(AutomationAPI::Part* part)
+{
+	AutomationAPI::PartBuilder* partBuilder = nullptr;
+	//If Journaling write the thing things
+	if (IsJournaling())
+	{
+		JournalStartCall("CreatePart", CannedGlobals::SESSION);
+		JournalBoolInParam(true, "is part created?");
+	}
+
+	if (IsJournaling())
+	{
+		JournalReturnClass(nullptr, "AutomationAPI::Part", "Part");
+		JournalEndCall();
+	}
+
+	return partBuilder;
+
+}
+
 void Application::PartFile::MakeWidgetFeature(bool option1, int values)
 {
 	cout << "    MakeWidgetFeature called with " << option1 << " " << values << endl;
